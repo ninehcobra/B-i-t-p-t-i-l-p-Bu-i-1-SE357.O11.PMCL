@@ -1,0 +1,56 @@
+@startuml
+class Customers {
+  - customer_id: int
+  - name: string
+  - email: string
+  - phone: string
+  - address: string
+  + placeOrder(): void
+}
+
+class Products {
+  - product_id: int
+  - name: string
+  - description: string
+  - price: double
+  - stock_quantity: int
+  + displayProductInfo(): void
+}
+
+class Orders {
+  - order_id: int
+  - order_date: date
+  - status: string
+  + addItem(): void
+  + removeItem(): void
+  + calculateTotal(): double
+}
+
+class OrderItems {
+  - order_item_id: int
+  - quantity: int
+  - total_price: double
+}
+
+class Payments {
+  - payment_id: int
+  - payment_date: date
+  - amount: double
+  + processPayment(): void
+}
+
+class Employees {
+  - employee_id: int
+  - name: string
+  - email: string
+  - phone: string
+  - position: string
+  + manageOrders(): void
+}
+
+Customers -- Orders
+Orders *-- OrderItems
+Orders -- Payments
+Employees -- Orders
+
+@enduml
