@@ -1,0 +1,48 @@
+@startuml Usecase
+
+rectangle "Cửa hàng đồ điện tử"{
+    ' Create actors
+    actor loggedInUser
+    actor notLoggedInUser
+    actor admin
+    actor employee
+
+    ' Add extension
+    notLoggedInUser <|-- loggedInUser
+    loggedInUser <|-- employee
+    employee <|-- admin
+
+    ' Add Function
+    notLoggedInUser --right-> (Login)
+    (Login) <. (Register): includes
+
+    loggedInUser --right-> (Logout)
+    loggedInUser --right->(Seacrch products)
+    (Seacrch products) .down.> (View product): extends
+    (View product) .down.> (Buy product):extends
+    loggedInUser --left->(View Promotions)
+    loggedInUser --right->(Make Purchase)
+    loggedInUser --left->(Manage User Orders)
+      (Manage User Orders) <.left.(Edit User Orders):include
+    (Manage User Orders) <.left.(Remove User Orders):include
+    (Manage User Orders) <.left.(Add User Orders):include
+
+    employee --right-> (Manage Orders)
+    employee --right-> (Manage Products)
+    (Manage Products) <.down.(Edit product):include
+    (Manage Products) <.down.(Remove product):include
+    (Manage Products) <.down.(Add product):include
+    employee --left-> (Manage Promotions)
+     (Manage Promotions) <.down.(Edit Promotions):include
+    (Manage Promotions) <.down.(Remove Promotions):include
+    (Manage Promotions) <.down.(Add Promotions):include
+    employee --left-> (Manage Inventory)
+     (Manage Inventory) <.down.(Check Quantity):include
+
+    admin --down->(Manage Login)
+    admin --down->(Manage Payments)
+    
+}
+
+
+@enduml
