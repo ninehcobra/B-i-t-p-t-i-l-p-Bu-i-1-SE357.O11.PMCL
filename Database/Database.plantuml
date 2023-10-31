@@ -1,0 +1,57 @@
+@startuml
+!define TABLE_BORDER_STYLE thicker
+
+entity "Customers" {
+  + customer_id: PK
+  --
+  name
+  email
+  phone
+  address
+}
+
+entity "Products" {
+  + product_id: PK
+  --
+  name
+  description
+  price
+  stock_quantity
+}
+
+entity "Orders" {
+  + order_id: PK
+  --
+  order_date
+  status
+}
+
+entity "Order_Items" {
+  + order_item_id: PK
+  --
+  quantity
+  total_price
+}
+
+entity "Payments" {
+  + payment_id: PK
+  --
+  payment_date
+  amount
+}
+
+entity "Employees" {
+  + employee_id: PK
+  --
+  name
+  email
+  phone
+  position
+}
+
+Customers ||--o{ Orders
+Orders ||--o{ Order_Items
+Products ||--o{ Order_Items
+Orders ||--o{ Payments
+Employees }--|| Orders
+@enduml
